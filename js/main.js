@@ -1,4 +1,4 @@
-import { links } from "./links.js"; 
+import { links } from "js/links.js"; 
   
 const linkContainer = document.getElementById("links"); 
   
