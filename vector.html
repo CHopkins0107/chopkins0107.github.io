@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vector Calculator</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="addandsub" class="divCustom">
+        <h1>Vector Addition & Subtraction</h1>
+        <p>Addition is used to combine two vectors</p>
+        <i>Example: Combining the forward and left input from the player into a singular movement vector</i>
+
+        <div>
+            <h3>Vector A</h3>
+            <label for="a1">A1: </label><input type="number" id="a1">
+            <label for="a2">A2: </label><input type="number" id="a2">
+            <label for="a3">A3: </label><input type="number" id="a3">
+        </div>
+
+        <div>
+            <h3>Vector B</h3>
+            <label for="b1">B1: </label><input type="number" id="b1">
+            <label for="b2">B2: </label><input type="number" id="b2">
+            <label for="b3">B3: </label><input type="number" id="b3">
+        </div>
+
+        <button onclick="addVectors()">Add Vectors</button>
+        <button onclick="subtractVectors()">Subtract Vectors</button>
+
+
+        <h3>Resultant Vector</h3>
+        <p id="result"></p>
+    </div>
+
+    <div id="scalermult" class="divCustom">
+        <h1>Scaler Multiplication & Division</h1>
+        <p>Multiplication scales a vector by a scalar.</p>
+        <i>Example: Reduce the speed of a moving object by a certain value such as air or water resistance</i>
+        
+        <div>
+            <h3>Vector A</h3>
+            <label for="scaler_a1">A1: </label><input type="number" id="scaler_a1">
+            <label for="scaler_a2">A2: </label><input type="number" id="scaler_a2">
+            <label for="scaler_a3">A3: </label><input type="number" id="scaler_a3">
+        </div>
+
+        <div>
+            <h3>Scaler</h3>
+            <label for="scaler">Scaler: </label><input type="number" id="scaler">
+        </div>
+
+        <button onclick="scalerVectors()">Multiply Vector</button>
+        <h3>Resultant Vector</h3>
+        <p id="scaler_result"></p>
+        
+    </div>
+
+    <div id="dotproduct" class="divCustom">
+        <h1>Dot Product</h1>
+        <p>The dot product is used to determine the angle between two vectors, which is crucial for lighting calculations, determining visibility, and collision detection.</p>
+
+        <div>
+            <h3>Vector A</h3>
+            <label for="dotproduct_a1">A1: </label><input type="number" id="dotproduct_a1">
+            <label for="dotproduct_a2">A2: </label><input type="number" id="dotproduct_a2">
+            <label for="dotproduct_a3">A3: </label><input type="number" id="dotproduct_a3">
+        </div>
+
+        <div>
+            <h3>Vector B</h3>
+            <label for="dotproduct_b1">B1: </label><input type="number" id="dotproduct_b1">
+            <label for="dotproduct_b2">B2: </label><input type="number" id="dotproduct_b2">
+            <label for="dotproduct_b3">B3: </label><input type="number" id="dotproduct_b3">
+        </div>
+
+        <h3>Dot Product</h3>
+        <button onclick="dotProduct()">Dot Product</button>
+
+        <p id="dotprod_result"></p>
+    </div>
+    <script src="js/vector.js"></script>
+  </body>
+</html>

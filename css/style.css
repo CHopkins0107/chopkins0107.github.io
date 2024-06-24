@@ -1,5 +1,6 @@
 /* File name: style.css */
 /* Color pallete: https://colorhunt.co/palette/dddddd22283130475ef05454 */
+
 * {
     color:#DDDDDD;
     padding: 0;
@@ -25,6 +26,40 @@ a {
     font-weight: 600;
 }
 
+button {
+	background-color:#f05454;
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	font-weight:bold;
+	padding:4px 12px;
+	text-decoration:none;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+button:hover {
+	background-color:#dddddd;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
+
+input {
+    background-color:#30475E;
+}
+
+.divCustom {
+    box-shadow: inset 10px 10px 20px 0px rgba(0,0,0,0.75);
+    border-radius: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+}
+        
 .logo {
     position: relative;
     height: 100%;
