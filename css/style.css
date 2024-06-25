@@ -20,6 +20,19 @@ main {
     justify-content: center;
 }
 
+.layout {
+    width: 100%;
+  
+    display: flex;
+    gap: 16px;
+  }
+  
+.grow1 { flex-grow: 1; }
+.grow5 { 
+    flex-grow: 5; 
+    height: 100vh;
+}
+
 a {
     text-decoration: none;
     font-size: 1.125rem;
@@ -53,7 +66,7 @@ input {
 }
 
 .divCustom {
-    box-shadow: inset 10px 10px 20px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
     border-radius: 16px;
     padding-top: 20px;
     padding-bottom: 20px;
