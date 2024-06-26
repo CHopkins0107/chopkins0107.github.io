@@ -1,0 +1,73 @@
+/* palette: https://coolors.co/palette/000000-14213d-fca311-e5e5e5-ffffff */
+
+* {
+    box-sizing: border-box;
+  }
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+    margin: 0;
+  }
+  .col-1 {
+    background: #E5E5E5;
+    flex: 1;
+  }
+  .col-2 {
+    display: flex;
+    flex-direction: column;
+    flex: 5;
+  }
+  #item-detail {
+    padding: 1em;
+  }
+  .content {
+    display: flex;
+    flex-direction: row;
+  }
+  .content > article {
+    flex: 3;
+    min-height: 60vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center items horizontally */
+    gap: 10px; /* Optional: to add some space between items */
+  }
+  .content > aside {
+    background: #E5E5E5;
+    flex: 1;
+  }
+  header {
+    background: #FCA311;
+    height: 20vh;
+  }
+  footer {
+    background: #14213D;
+    height: 20vh;
+  }
+  header, footer, article, nav, aside {
+    padding: 1em;
+  }
+  img {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+  }
+  .shop-item {
+    width: 200px; /* Fixed width */
+    height: 300px; /* Fixed height, optional */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px; /* Optional: to add some space around each item */
+    background: #FFFFFF; /* Optional: background color for items */
+    padding: 10px; /* Optional: padding inside each item */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: add a shadow effect */
+  }
+
+  .shop-item p {
+    text-align: center;
+  }
+
+
+  
