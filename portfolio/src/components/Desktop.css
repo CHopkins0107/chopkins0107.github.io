@@ -1,0 +1,17 @@
+.desktop {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url('https://www.wallpaperhub.app/_next/image?url=https%3A%2F%2Fcdn.wallpaperhub.app%2Fcloudcache%2Fb%2Fd%2F7%2F6%2F4%2Fb%2Fbd764bb25d49a05105060185774ba14cd2c846f7.jpg&w=4500&q=100');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 20px;
+  padding-bottom: 56px; /* Space for taskbar */
+}
+
+.desktop .icon:nth-child(1) { top: 20px; left: 20px; }
+.desktop .icon:nth-child(2) { top: 100px; left: 20px; }
+.desktop .icon:nth-child(3) { top: 180px; left: 20px; }
+.desktop .icon:nth-child(4) { top: 260px; left: 20px; }

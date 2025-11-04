@@ -1,0 +1,139 @@
+.start-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 36px;
+  z-index: 999;
+}
+
+.start-menu {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 380px;
+  background: linear-gradient(to right, #e2e2e2 0%, #e2e2e2 200px, #d4d4d4 200px, #d4d4d4 100%);
+  border: 2px solid #003c74;
+  box-shadow: 2px -2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.start-menu-header {
+  background: linear-gradient(to right, #2b5ba3 0%, #2b5ba3 200px, #4a7bc8 200px, #4a7bc8 100%);
+  padding: 12px;
+  border-bottom: 1px solid #003c74;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  background: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #999;
+}
+
+.user-name {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.start-menu-body {
+  display: flex;
+  min-height: 300px;
+}
+
+.left-pane {
+  width: 200px;
+  padding: 8px;
+  background: #e2e2e2;
+  border-right: 1px solid #999;
+}
+
+.right-pane {
+  flex: 1;
+  padding: 8px;
+  background: #d4d4d4;
+}
+
+.left-pane-label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #666;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background-color 0.1s;
+}
+
+.menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.menu-item-icon {
+  font-size: 20px;
+  width: 24px;
+  text-align: center;
+}
+
+.menu-item-text {
+  font-size: 13px;
+  color: #333;
+  flex: 1;
+}
+
+.recent-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background-color 0.1s;
+}
+
+.recent-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.recent-item .menu-item-icon {
+  font-size: 16px;
+  width: 20px;
+}
+
+.recent-item .menu-item-text {
+  font-size: 12px;
+  color: #555;
+}
+
+.start-menu-footer {
+  border-top: 1px solid #999;
+  padding: 8px;
+  background: linear-gradient(to right, #e2e2e2 0%, #e2e2e2 200px, #d4d4d4 200px, #d4d4d4 100%);
+  display: flex;
+  gap: 8px;
+}
+
+.start-menu-footer .menu-item {
+  flex: 1;
+  justify-content: center;
+  font-weight: bold;
+}
