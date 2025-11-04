@@ -1,0 +1,246 @@
+.wikipedia-page {
+  display: flex;
+  gap: 20px;
+  max-width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Liberation Sans', sans-serif;
+  color: #202122;
+  background: #ffffff;
+  line-height: 1.6;
+}
+
+.wikipedia-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.wikipedia-title {
+  font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+  font-size: 2.5em;
+  font-weight: normal;
+  margin: 0 0 0.25em 0;
+  border-bottom: 1px solid #a7d7f9;
+  padding-bottom: 0.25em;
+  color: #000;
+}
+
+.wikipedia-subtitle {
+  font-size: 0.85em;
+  color: #54595d;
+  margin-bottom: 0.5em;
+  font-style: italic;
+}
+
+.wikipedia-infobox {
+  float: right;
+  width: 280px;
+  margin: 0 0 1em 1.5em;
+  border: 1px solid #a7d7f9;
+  background: #f8f9fa;
+  font-size: 0.875em;
+}
+
+.infobox-header {
+  background: #2e7eb6;
+  color: white;
+  font-weight: bold;
+  padding: 8px 10px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.infobox-content {
+  padding: 10px;
+}
+
+.infobox-image {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.placeholder-image {
+  width: 200px;
+  height: 250px;
+  background: #eaecf0;
+  border: 1px solid #c8ccd1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  margin: 0 auto 8px;
+}
+
+.placeholder-image-large {
+  width: 100%;
+  max-width: 250px;
+  height: 300px;
+  background: #eaecf0;
+  border: 1px solid #c8ccd1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 100px;
+  margin: 0 auto 12px;
+}
+
+.image-caption {
+  font-size: 0.85em;
+  color: #54595d;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.infobox-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.infobox-table th {
+  text-align: left;
+  vertical-align: top;
+  padding: 4px 8px 4px 0;
+  font-weight: bold;
+  width: 35%;
+}
+
+.infobox-table td {
+  padding: 4px 0;
+  vertical-align: top;
+}
+
+.infobox-table a {
+  color: #0645ad;
+  text-decoration: none;
+}
+
+.infobox-table a:hover {
+  text-decoration: underline;
+}
+
+.wikipedia-content {
+  margin-top: 1em;
+}
+
+.wikipedia-content p {
+  margin: 0.5em 0;
+  text-align: justify;
+}
+
+.wikipedia-content h2 {
+  font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+  font-size: 1.5em;
+  font-weight: normal;
+  margin: 1.5em 0 0.5em 0;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #a7d7f9;
+  color: #000;
+}
+
+.wikipedia-content h2:first-of-type {
+  margin-top: 0;
+}
+
+.wikipedia-content ul,
+.wikipedia-content ol {
+  margin: 0.5em 0;
+  padding-left: 2em;
+}
+
+.wikipedia-content li {
+  margin: 0.3em 0;
+}
+
+.wikipedia-content a {
+  color: #0645ad;
+  text-decoration: none;
+}
+
+.wikipedia-content a:hover {
+  text-decoration: underline;
+}
+
+.wikipedia-content a:visited {
+  color: #0b0080;
+}
+
+.wikipedia-content cite {
+  font-style: italic;
+}
+
+.wikipedia-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: #f8f9fa;
+  border: 1px solid #a7d7f9;
+  padding: 15px;
+  font-size: 0.875em;
+}
+
+.sidebar-image {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.sidebar-section {
+  margin-bottom: 20px;
+}
+
+.sidebar-section:last-child {
+  margin-bottom: 0;
+}
+
+.sidebar-section h3 {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #a7d7f9;
+  color: #000;
+}
+
+.sidebar-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sidebar-table td {
+  padding: 6px 8px;
+  vertical-align: top;
+  border-bottom: 1px solid #eaecf0;
+}
+
+.sidebar-table td:first-child {
+  width: 40%;
+  font-weight: bold;
+}
+
+.sidebar-table tr:last-child td {
+  border-bottom: none;
+}
+
+.sidebar-table a {
+  color: #0645ad;
+  text-decoration: none;
+}
+
+.sidebar-table a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+  .wikipedia-page {
+    flex-direction: column;
+  }
+
+  .wikipedia-sidebar {
+    width: 100%;
+  }
+
+  .wikipedia-infobox {
+    float: none;
+    width: 100%;
+    margin: 1em 0;
+  }
+}
+

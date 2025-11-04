@@ -74,8 +74,7 @@
 
 .window-content {
   flex: 1;
-  overflow: auto;
-  padding: 16px;
+  overflow: hidden;
   background: white;
 }
 
@@ -85,24 +84,6 @@
   height: 100%;
   border: 0;
   display: block;
-}
-
-.window-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  color: #666;
-}
-
-.window-placeholder p {
-  margin: 8px 0;
-}
-
-.window-placeholder-hint {
-  font-size: 14px;
-  font-style: italic;
 }
 
 .window-resizer {

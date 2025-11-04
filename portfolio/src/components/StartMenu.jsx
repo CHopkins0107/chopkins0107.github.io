@@ -13,12 +13,30 @@ const StartMenu = ({ onClose, openWindow }) => {
     onClose()
   }
   const handleMenuItemClick = (e, item) => {
-    if (!item || !item.url) return
     e.stopPropagation()
-    const target = '_blank'
-    const features = 'noopener,noreferrer'
-    window.open(item.url, target, features)
-    onClose()
+    
+    // If item has an external URL, open in new tab
+    if (item && item.url && /^https?:\/\//.test(item.url)) {
+      const target = '_blank'
+      const features = 'noopener,noreferrer'
+      window.open(item.url, target, features)
+      onClose()
+      return
+    }
+    
+    // If item should open a window (like "My Pictures" or "My Music")
+    if (item && item.id) {
+      const icon = {
+        id: item.id,
+        name: item.text,
+        image: '',
+        url: item.url || '',
+        defaultSize: item.defaultSize
+      }
+      openWindow(icon)
+      onClose()
+      return
+    }
   }
   const user = {
     name: 'Portfolio User'
@@ -28,8 +46,8 @@ const StartMenu = ({ onClose, openWindow }) => {
   // { icon: '🌐', text: 'Portfolio Site', url: 'https://example.com' },
   const menuItems = [
     { icon: '📁', text: 'My Documents' },
-    { icon: '🖼️', text: 'My Pictures' },
-    { icon: '🎵', text: 'My Music' },
+    { icon: '🖼️', text: 'My Pictures', id: 'pictures', defaultSize: { width: 600, height: 400 } },
+    { icon: '🎵', text: 'My Music', id: 'music', defaultSize: { width: 600, height: 400 } },
     { icon: '🎮', text: 'My Games', url: 'https://aespirin.itch.io' },
     
   ]
@@ -53,10 +71,6 @@ const StartMenu = ({ onClose, openWindow }) => {
             <div className="recent-item" onClick={handleResumeClick}>
               <span className="menu-item-icon">📄</span>
               <span className="menu-item-text">Resume</span>
-            </div>
-            <div className="recent-item">
-              <span className="menu-item-icon">📄</span>
-              <span className="menu-item-text">Document 2</span>
             </div>
           </div>
           <div className="right-pane">

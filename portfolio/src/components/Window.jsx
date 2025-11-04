@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import WindowContent from './WindowContent'
 import './Window.css'
 
 const Window = ({ window, onClose, onFocus, onMove, onResize, onMaximize, onMinimize }) => {
@@ -16,6 +17,7 @@ const Window = ({ window, onClose, onFocus, onMove, onResize, onMaximize, onMini
         y: e.clientY - window.y,
       })
       onFocus()
+      e.preventDefault()
     }
   }
 
@@ -29,25 +31,39 @@ const Window = ({ window, onClose, onFocus, onMove, onResize, onMaximize, onMini
         y: e.clientY,
       })
       onFocus()
+      e.preventDefault()
     }
   }
 
-  const handleMouseMove = (e) => {
-    if (isDragging && !window.isMaximized) {
-      const newX = e.clientX - dragStart.x
-      const newY = e.clientY - dragStart.y
-      onMove(window.id, newX, newY)
-    } else if (isResizing && !window.isMaximized) {
-      const newWidth = resizeStart.width + (e.clientX - resizeStart.x)
-      const newHeight = resizeStart.height + (e.clientY - resizeStart.y)
-      onResize(window.id, Math.max(300, newWidth), Math.max(200, newHeight))
+  // Use document-level event listeners for dragging/resizing
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (isDragging && !window.isMaximized) {
+        const newX = e.clientX - dragStart.x
+        const newY = e.clientY - dragStart.y
+        onMove(window.id, newX, newY)
+      } else if (isResizing && !window.isMaximized) {
+        const newWidth = resizeStart.width + (e.clientX - resizeStart.x)
+        const newHeight = resizeStart.height + (e.clientY - resizeStart.y)
+        onResize(window.id, Math.max(300, newWidth), Math.max(200, newHeight))
+      }
     }
-  }
 
-  const handleMouseUp = () => {
-    setIsDragging(false)
-    setIsResizing(false)
-  }
+    const handleMouseUp = () => {
+      setIsDragging(false)
+      setIsResizing(false)
+    }
+
+    if (isDragging || isResizing) {
+      document.addEventListener('mousemove', handleMouseMove)
+      document.addEventListener('mouseup', handleMouseUp)
+      
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove)
+        document.removeEventListener('mouseup', handleMouseUp)
+      }
+    }
+  }, [isDragging, isResizing, dragStart, resizeStart, window.id, window.isMaximized, onMove, onResize])
 
   return (
     <div
@@ -61,9 +77,6 @@ const Window = ({ window, onClose, onFocus, onMove, onResize, onMaximize, onMini
         zIndex: window.zIndex,
       }}
       onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
     >
       <div className="window-header">
         <span className="window-title">{window.title}</span>
@@ -80,12 +93,7 @@ const Window = ({ window, onClose, onFocus, onMove, onResize, onMaximize, onMini
         </div>
       </div>
       <div className="window-content">
-        {window.content || (
-          <div className="window-placeholder">
-            <p>{window.title}</p>
-            <p className="window-placeholder-hint">Content coming soon...</p>
-          </div>
-        )}
+        <WindowContent window={window} />
       </div>
       {!window.isMaximized && (
         <div className="window-resizer" onMouseDown={handleResizeMouseDown} />

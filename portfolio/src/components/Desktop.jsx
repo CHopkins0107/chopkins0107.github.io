@@ -2,37 +2,53 @@ import { useState } from 'react'
 import Icon from './Icon'
 import Window from './Window'
 import Taskbar from './Taskbar'
+import AboutMeContent from './AboutMeContent'
+import ComingSoonContent from './ComingSoonContent'
+import { handleIconAction } from '../utils/iconActions'
 import './Desktop.css'
 
 const Desktop = () => {
   const [windows, setWindows] = useState([])
   // Note: Most websites block use of iframes to embed their content. Save for specific cases.
   const [icons] = useState([
-    { id: 'about', name: 'About Me', image: '', url: '/about' },
-    { id: 'projects', name: 'Projects', image: '', url: '/projects' },
-    { id: 'contact', name: 'Contact', image: '', url: '/contact' },
-    { id: 'github', name: 'GitHub', image: '', url: 'https://itch.io/' },
+    { id: 'about', name: 'About Me', image: '', url: '/about', defaultSize: { width: 900, height: 600 } },
+    { id: 'contact', name: 'Contact', image: '', url: 'mailto:chopkins0107@gmail.com' },
+    // { id: 'github', name: 'GitHub', image: '', url: 'https://github.com/chopkins0107' },
   ])
 
   const openWindow = (icon) => {
     const windowId = `${icon.id}-${Date.now()}`
     const isExternal = typeof icon.url === 'string' && /^https?:\/\//.test(icon.url)
-    const newWindow = {
-      id: windowId,
-      iconId: icon.id,
-      title: icon.name,
-      content: isExternal ? (
+    
+    // Determine content based on icon clicked on
+    let content = null
+    if (isExternal) {
+      content = (
         <iframe
           src={icon.url}
           title={icon.name}
           className="window-iframe"
           referrerPolicy="no-referrer"
         />
-      ) : null,
+      )
+    } else if (icon.id === 'about') {
+      content = <AboutMeContent />
+    } else if (icon.id === 'pictures' || icon.id === 'music') {
+      content = <ComingSoonContent title="Coming Soon" />
+    }
+    
+    // Use default size from icon if provided, otherwise use default 600x400
+    const defaultSize = icon.defaultSize || { width: 600, height: 400 }
+    
+    const newWindow = {
+      id: windowId,
+      iconId: icon.id,
+      title: icon.name,
+      content: content,
       x: Math.random() * 200 + 50,
       y: Math.random() * 200 + 50,
-      width: 600,
-      height: 400,
+      width: defaultSize.width,
+      height: defaultSize.height,
       zIndex: windows.length + 1,
       isMaximized: false,
       isMinimized: false,
@@ -102,13 +118,23 @@ const Desktop = () => {
     }))
   }
 
+  const handleIconClick = (icon) => {
+    // Check if icon has a special action handler (e.g., mailto:, tel:, custom actions)
+    const wasHandled = handleIconAction(icon)
+    
+    // If no special action handler processed it, open a window
+    if (!wasHandled) {
+      openWindow(icon)
+    }
+  }
+
   return (
     <div className="desktop">
       {icons.map((icon) => (
         <Icon
           key={icon.id}
           icon={icon}
-          onClick={() => openWindow(icon)}
+          onClick={() => handleIconClick(icon)}
         />
       ))}
       {windows.map((window) => (
