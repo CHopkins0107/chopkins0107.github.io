@@ -7,7 +7,8 @@ const StartMenu = ({ onClose, openWindow }) => {
       id: 'resume',
       name: 'Resume',
       image: '',
-      url: '/resume'
+      url: '/Resume.pdf',
+      defaultSize: { width: 800, height: 600 }
     }
     openWindow(resumeIcon)
     onClose()
@@ -45,7 +46,7 @@ const StartMenu = ({ onClose, openWindow }) => {
   // Example external link items (will open in new tab)
   // { icon: '🌐', text: 'Portfolio Site', url: 'https://example.com' },
   const menuItems = [
-    { icon: '📁', text: 'My Documents' },
+    { icon: '📁', text: 'My Repositories', id: 'repositories', defaultSize: { width: 600, height: 400 } },
     { icon: '🖼️', text: 'My Pictures', id: 'pictures', defaultSize: { width: 600, height: 400 } },
     { icon: '🎵', text: 'My Music', id: 'music', defaultSize: { width: 600, height: 400 } },
     { icon: '🎮', text: 'My Games', url: 'https://aespirin.itch.io' },

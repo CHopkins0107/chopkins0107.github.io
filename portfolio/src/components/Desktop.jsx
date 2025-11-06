@@ -20,6 +20,21 @@ const Desktop = () => {
     const windowId = `${icon.id}-${Date.now()}`
     const isExternal = typeof icon.url === 'string' && /^https?:\/\//.test(icon.url)
     
+    // Content map for icon-based content
+    const contentMap = {
+      'about': () => <AboutMeContent />,
+      'pictures': () => <ComingSoonContent title="Coming Soon" />,
+      'music': () => <ComingSoonContent title="Coming Soon" />,
+      'resume': () => (
+        <iframe
+          src="/Resume.pdf"
+          title={icon.name}
+          className="window-iframe"
+          type="application/pdf"
+        />
+      ),
+    }
+    
     // Determine content based on icon clicked on
     let content = null
     if (isExternal) {
@@ -31,10 +46,8 @@ const Desktop = () => {
           referrerPolicy="no-referrer"
         />
       )
-    } else if (icon.id === 'about') {
-      content = <AboutMeContent />
-    } else if (icon.id === 'pictures' || icon.id === 'music') {
-      content = <ComingSoonContent title="Coming Soon" />
+    } else if (contentMap[icon.id]) {
+      content = contentMap[icon.id]()
     }
     
     // Use default size from icon if provided, otherwise use default 600x400
