@@ -14,6 +14,13 @@ const actionHandlers = {
     window.location.href = icon.url
     return true
   },
+  'external-link': (icon) => {
+    if (icon.url) {
+      window.open(icon.url, '_blank', 'noopener,noreferrer')
+      return true
+    }
+    return false
+  },
   // Custom action handlers can be added here
 }
 

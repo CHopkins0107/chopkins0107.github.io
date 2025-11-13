@@ -37,7 +37,7 @@ const Taskbar = ({ openWindow, windows, onWindowClick }) => {
           className="start-button"
           onClick={() => setShowStartMenu(!showStartMenu)}
         >
-          <span className="start-icon">🐱</span>
+          <span className="start-icon">👨🏽‍💻</span>
           <span className="start-text">start</span>
         </button>
         <div className="taskbar-windows">

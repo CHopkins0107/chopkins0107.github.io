@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Icon from './Icon'
 import Window from './Window'
 import Taskbar from './Taskbar'
@@ -11,10 +11,24 @@ const Desktop = () => {
   const [windows, setWindows] = useState([])
   // Note: Most websites block use of iframes to embed their content. Save for specific cases.
   const [icons] = useState([
-    { id: 'about', name: 'About Me', image: '', url: '/about', defaultSize: { width: 900, height: 600 } },
-    { id: 'contact', name: 'Contact', image: '', url: 'mailto:chopkins0107@gmail.com' },
-    // { id: 'github', name: 'GitHub', image: '', url: 'https://github.com/chopkins0107' },
+    { id: 'about', name: 'About Me', image: '/Windows Messenger.png', url: '/about', defaultSize: { width: 900, height: 600 } },
+    { id: 'contact', name: 'Contact', image: '/Email.png', url: 'mailto:chopkins0107@gmail.com' },
+    { id: 'github', name: 'GitHub', image: '/github.png', url: 'https://github.com/chopkins0107', action: 'external-link' },
+    { id: 'linkedin', name: 'LinkedIn', image: '/linkedin.png', url: 'https://www.linkedin.com/in/jamelhopkins/', action: 'external-link' },
   ])
+
+  const createMaximizedState = useCallback((windowState) => ({
+    ...windowState,
+    isMaximized: true,
+    prevX: windowState.isMaximized ? windowState.prevX : windowState.x,
+    prevY: windowState.isMaximized ? windowState.prevY : windowState.y,
+    prevWidth: windowState.isMaximized ? windowState.prevWidth : windowState.width,
+    prevHeight: windowState.isMaximized ? windowState.prevHeight : windowState.height,
+    x: 0,
+    y: 0,
+    width: window.innerWidth,
+    height: window.innerHeight - 36,
+  }), [])
 
   const openWindow = (icon) => {
     const windowId = `${icon.id}-${Date.now()}`
@@ -53,11 +67,12 @@ const Desktop = () => {
     // Use default size from icon if provided, otherwise use default 600x400
     const defaultSize = icon.defaultSize || { width: 600, height: 400 }
     
-    const newWindow = {
+    let newWindow = {
       id: windowId,
       iconId: icon.id,
       title: icon.name,
       content: content,
+      image: icon.image || '',
       x: Math.random() * 200 + 50,
       y: Math.random() * 200 + 50,
       width: defaultSize.width,
@@ -70,6 +85,11 @@ const Desktop = () => {
       prevWidth: 800,
       prevHeight: 600,
     }
+
+    if (window.innerHeight > window.innerWidth) {
+      newWindow = createMaximizedState(newWindow)
+    }
+
     setWindows([...windows, newWindow])
   }
 
@@ -141,13 +161,32 @@ const Desktop = () => {
     }
   }
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerHeight > window.innerWidth) {
+        setWindows((prev) => prev.map((w) => createMaximizedState(w)))
+      }
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [createMaximizedState])
+
   return (
     <div className="desktop">
-      {icons.map((icon) => (
+      {icons.map((icon, index) => (
         <Icon
           key={icon.id}
           icon={icon}
           onClick={() => handleIconClick(icon)}
+          style={{
+            top: `${20 + index * 100}px`,
+            left: '20px',
+          }}
         />
       ))}
       {windows.map((window) => (

@@ -1,8 +1,8 @@
 import './Icon.css'
 
-const Icon = ({ icon, onClick }) => {
+const Icon = ({ icon, onClick, style }) => {
   return (
-    <div className="icon" onClick={onClick}>
+    <div className="icon" onClick={onClick} style={style}>
       <div className="icon-image">
         {icon.image ? (
           <img src={icon.image} alt={icon.name} />

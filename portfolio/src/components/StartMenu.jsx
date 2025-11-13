@@ -6,7 +6,7 @@ const StartMenu = ({ onClose, openWindow }) => {
     const resumeIcon = {
       id: 'resume',
       name: 'Resume',
-      image: '',
+      image: '/Generic%20Text%20Document.png',
       url: '/Resume.pdf',
       defaultSize: { width: 800, height: 600 }
     }
@@ -30,7 +30,7 @@ const StartMenu = ({ onClose, openWindow }) => {
       const icon = {
         id: item.id,
         name: item.text,
-        image: '',
+        image: item.icon || '',
         url: item.url || '',
         defaultSize: item.defaultSize
       }
@@ -40,22 +40,21 @@ const StartMenu = ({ onClose, openWindow }) => {
     }
   }
   const user = {
-    name: 'Portfolio User'
+    name: 'Jamel Hopkins'
   }
 
   // Example external link items (will open in new tab)
   // { icon: '🌐', text: 'Portfolio Site', url: 'https://example.com' },
   const menuItems = [
-    { icon: '📁', text: 'My Repositories', id: 'repositories', defaultSize: { width: 600, height: 400 } },
-    { icon: '🖼️', text: 'My Pictures', id: 'pictures', defaultSize: { width: 600, height: 400 } },
-    { icon: '🎵', text: 'My Music', id: 'music', defaultSize: { width: 600, height: 400 } },
-    { icon: '🎮', text: 'My Games', url: 'https://aespirin.itch.io' },
-    
+    { icon: '/Folder%20View.png', text: 'My Repositories', id: 'repositories', defaultSize: { width: 600, height: 400 } },
+    { icon: '/My%20Pictures.png', text: 'My Pictures', id: 'pictures', defaultSize: { width: 600, height: 400 } },
+    { icon: '/My%20Music.png', text: 'My Music', id: 'music', defaultSize: { width: 600, height: 400 } },
+    { icon: '/Game%20Controller.png', text: 'My Games', url: 'https://aespirin.itch.io' },
   ]
 
   const actions = [
-    { icon: '🔒', text: 'Log Off', action: 'logoff' },
-    { icon: '⏻', text: 'Shutdown', action: 'shutdown' },
+    { icon: '/Logout.png', text: 'Log Off', action: 'logoff' },
+    { icon: '/Power.png', text: 'Shutdown', action: 'shutdown' },
   ]
 
   return (
@@ -70,7 +69,9 @@ const StartMenu = ({ onClose, openWindow }) => {
           <div className="left-pane">
             <div className="left-pane-label">Most Recent</div>
             <div className="recent-item" onClick={handleResumeClick}>
-              <span className="menu-item-icon">📄</span>
+              <span className="menu-item-icon">
+                <img src="/Generic%20Text%20Document.png" alt="Resume" />
+              </span>
               <span className="menu-item-text">Resume</span>
             </div>
           </div>
@@ -82,7 +83,9 @@ const StartMenu = ({ onClose, openWindow }) => {
                 onClick={(e) => handleMenuItemClick(e, item)}
                 role="button"
               >
-                <span className="menu-item-icon">{item.icon}</span>
+                <span className="menu-item-icon">
+                  <img src={item.icon} alt={item.text} />
+                </span>
                 <span className="menu-item-text">{item.text}</span>
               </div>
             ))}
@@ -91,7 +94,9 @@ const StartMenu = ({ onClose, openWindow }) => {
         <div className="start-menu-footer">
           {actions.map((action, index) => (
             <div key={index} className="menu-item">
-              <span className="menu-item-icon">{action.icon}</span>
+              <span className="menu-item-icon">
+                <img src={action.icon} alt={action.text} />
+              </span>
               <span className="menu-item-text">{action.text}</span>
             </div>
           ))}
